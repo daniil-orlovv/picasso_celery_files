@@ -1,11 +1,8 @@
-from django.urls import include, path
-from rest_framework.routers import SimpleRouter
+from django.urls import path
 
-router = SimpleRouter()
-
-router.register('upload', ..., basename='upload')
-router.register('files', ..., basename='files')
+from api.views import FilesAPICreate, FilesAPIList
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('files/', FilesAPIList.as_view(), name='files'),
+    path('upload/', FilesAPICreate.as_view(), name='upload'),
 ]
