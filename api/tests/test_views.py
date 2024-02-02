@@ -25,7 +25,6 @@ class YourApiViewTest(TestCase):
             data,
             format='json'
         )
-        file = File.objects.get(pk=1)
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(File.objects.count(), 1)
