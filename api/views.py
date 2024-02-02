@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from celery.exceptions import Retry
 
 from files.models import File
 from api.serializers import FileSerializer
@@ -21,6 +22,14 @@ class FilesAPICreate(APIView):
         serializer = FileSerializer(data=request.data)
         if serializer.is_valid():
             file_instance = serializer.save()
-            update_processed_field.delay(file_instance.id, True)
+
+            try:
+                update_processed_field.delay(file_instance.id, True)
+            except Retry:
+                return Response(
+                    {'error': 'Ошибка при отправке задачи в Celery'},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
