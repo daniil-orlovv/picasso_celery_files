@@ -21,9 +21,21 @@ class TestEndpoint(TestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.files = [
-            File(file='File1.txt', uploaded_at=timezone.now(), processed=False),
-            File(file='File2.txt', uploaded_at=timezone.now(), processed=False),
-            File(file='File3.txt', uploaded_at=timezone.now(), processed=False),
+            File(
+                file='File1.txt',
+                uploaded_at=timezone.now(),
+                processed=False
+            ),
+            File(
+                file='File2.txt',
+                uploaded_at=timezone.now(),
+                processed=False
+            ),
+            File(
+                file='File3.txt',
+                uploaded_at=timezone.now(),
+                processed=False
+            ),
         ]
         cls.file_content = b'Text'
         cls.uploaded_file = SimpleUploadedFile("file.txt", cls.file_content)
