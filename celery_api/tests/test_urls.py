@@ -9,7 +9,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from dateutil import parser
 from datetime import datetime
 
-from files.models import File
+from celery_api.models import File
 
 
 TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)

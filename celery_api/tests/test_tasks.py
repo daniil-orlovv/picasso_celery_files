@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.core.files.uploadedfile import SimpleUploadedFile
-from files.models import File
-from api.tasks import update_processed_field
+from celery_api.models import File
+from celery_api.tasks import update_processed_field
 
 
 # Попытка покрыть тестами Celery...

@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 
-from files.models import File
+from celery_api.models import File
 
 
 def update(file_id, new_value):

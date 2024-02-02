@@ -13,8 +13,7 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
-    'files.apps.FilesConfig',
-    'api.apps.ApiConfig',
+    'celery_api.apps.CeleryApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

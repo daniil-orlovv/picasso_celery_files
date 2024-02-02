@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from files.models import File
+from celery_api.models import File
 
 
 class FileAdmin(admin.ModelAdmin):

@@ -3,9 +3,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from celery.exceptions import Retry
 
-from files.models import File
-from api.serializers import FileSerializer
-from api.tasks import update_processed_field
+from celery_api.models import File
+from celery_api.serializers import FileSerializer
+from celery_api.tasks import update_processed_field
 
 
 class FilesAPIList(APIView):

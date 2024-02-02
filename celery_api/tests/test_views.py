@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from rest_framework import status
 from django.core.files.uploadedfile import SimpleUploadedFile
-from files.models import File
+from celery_api.models import File
 
 
 class YourApiViewTest(TestCase):

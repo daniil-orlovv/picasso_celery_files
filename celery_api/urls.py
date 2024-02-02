@@ -1,6 +1,6 @@
 from django.urls import path
 
-from api.views import FilesAPICreate, FilesAPIList
+from celery_api.views import FilesAPICreate, FilesAPIList
 
 urlpatterns = [
     path('files/', FilesAPIList.as_view(), name='files'),
