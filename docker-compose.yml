@@ -1,0 +1,29 @@
+version: '3.3'
+
+volumes:
+  sqlite_db:
+  static:
+  files:
+
+services:
+
+  backend:
+    # container_name: backend_container
+    build: .
+    env_file: .env
+    volumes:
+      - static:/backend_static/
+      - sqlite_db:/data/
+      - files:/files/
+
+  redis:
+    container_name: redis_container
+    image: redis:latest
+
+  nginx:
+    container_name: nginx_container
+    build: ./nginx/
+    volumes:
+      - static:/staticfiles/
+    ports:
+      - 8000:80
