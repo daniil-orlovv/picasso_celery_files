@@ -11,6 +11,7 @@ from celery_api.tasks import update_processed_field
 class FilesAPIList(APIView):
 
     def get(self, request):
+        """Обработка get-запроса на эндпоинт /files."""
         cats = File.objects.all()
         serializer = FileSerializer(cats, many=True)
         return Response(serializer.data)
@@ -19,6 +20,7 @@ class FilesAPIList(APIView):
 class FilesAPICreate(APIView):
 
     def post(self, request):
+        """Обработка post-запроса на эндпоинт /upload."""
         serializer = FileSerializer(data=request.data)
         if serializer.is_valid():
             file_instance = serializer.save()

@@ -4,6 +4,7 @@ from celery_api.models import File
 
 
 class FileSerializer(serializers.ModelSerializer):
+    """Сериализуем данные API."""
     file = serializers.FileField()
 
     class Meta:
