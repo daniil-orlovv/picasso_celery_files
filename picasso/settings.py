@@ -9,8 +9,6 @@ SECRET_KEY = os.getenv('SECRET_KEY', default='secret_key')
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 
 INSTALLED_APPS = [
     'celery_api.apps.CeleryApiConfig',
@@ -57,7 +55,9 @@ WSGI_APPLICATION = 'picasso.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
+        'NAME': '/data/db.sqlite3',  # Для работы в докере
+        # 'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
+
     }
 }
 
@@ -93,7 +93,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Settings for Celery
-REDIS_HOST = "localhost"
+# Для работы в docker-compose необходимо выставить "redis"
+# Для работы на локальном сервере необходимо выставить "localhost"
+REDIS_HOST = "redis"
 REDIS_PORT = "6379"
 
 CELERY_BROKER_URL = "redis://" + REDIS_HOST + ":" + REDIS_PORT + "/0"
@@ -103,3 +105,12 @@ CELERY_RESULT_BACKEND = "redis://" + REDIS_HOST + ":" + REDIS_PORT + "/0"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
+
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'backend']
+
+MEDIA_URL = '/files/'
+MEDIA_ROOT = '/files/'
+
+STATIC_URL = '/backend_static//'
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
